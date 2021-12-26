@@ -309,7 +309,7 @@ const maniObject2 = {
         return this.age;
     },
 
-    getSummary: function() {
+    gettotalSummary: function() {
         // const drivingLicenseVariable = this.hasDriversLicense === true ? 'a' : 'no';
         const drivingLicenseVariable = this.hasDriversLicense ? 'a' : 'no';
         
@@ -325,10 +325,10 @@ console.log(maniObject2.age);
 console.log(maniObject2.age);
 console.log(maniObject2.age);
 
-// Challenge: write a method called 'getSummary()' and the method should return a string that should summarize the 
+// Challenge: write a method called 'gettotalSummary()' and the method should return a string that should totalSummarize the 
 // data about the whole mani object
 //Example: Manikanta is a 30 year old programmer and he has a/no driver's license;
-console.log('challenge str result: ', maniObject2.getSummary());
+console.log('challenge str result: ', maniObject2.gettotalSummary());
 
 
 // 45. Coding Challenge-3:
@@ -479,3 +479,31 @@ while (dice !== 6) {
 
 
 //50. Coding Challenge-4:
+const billsNew = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tipsNew = [];
+const totalNew = [];
+// arrow function syntax
+const calcTipNew = (billValue) => 
+(billValue >= 50 && billValue <= 300) ? billValue * 0.15 : billValue * 0.20;
+
+for (let bill = 0; bill < billsNew.length; bill++) {
+    const tip = calcTipNew(billsNew[bill]);
+
+    tipsNew.push(tip);
+    totalNew.push(billsNew[bill] + tip)
+}
+console.log(billsNew, tipsNew, totalNew);
+
+// function expression syntax
+// this function takes in an arr and calculates the average of all the elments in that given arr.
+const calcAvg = function (arr) {
+    let totalSum = 0;
+    for (let ele = 0; ele < arr.length; ele++) {
+        totalSum += arr[ele];
+    }
+    return totalSum / arr.length;
+}
+console.log(calcAvg([5, 10, 15, 20])); // 12.5
+console.log(calcAvg(totalNew)); // 275.19
+console.log(calcAvg(tipsNew)); // 42.89
+console.log('testing live server plugin if enabled properly or not');

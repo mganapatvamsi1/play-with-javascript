@@ -507,3 +507,5 @@ console.log(calcAvg([5, 10, 15, 20])); // 12.5
 console.log(calcAvg(totalNew)); // 275.19
 console.log(calcAvg(tipsNew)); // 42.89
 console.log('testing live server plugin if enabled properly or not');
+
+// Note: we can type 'debugger;' in the code so taht the browser will trigger the debugger too 

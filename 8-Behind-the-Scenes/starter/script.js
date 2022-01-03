@@ -1,5 +1,4 @@
 'use strict';
-
 // Here calcAge is defined in the global scope.
 function calcAge(birthYear) {
     const age = 2022 - birthYear;

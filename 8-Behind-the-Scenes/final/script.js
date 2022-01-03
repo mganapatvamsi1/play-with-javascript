@@ -1,5 +1,4 @@
 'use strict';
-
 ///////////////////////////////////////
 // Scoping in Practice
 

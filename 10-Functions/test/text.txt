@@ -2,7 +2,7 @@ index=app splunk_server_group=default cpce-voc-automation-service "start date re
 index=app sourcetype="cpce-voc-automation-service-log" "start date received"
 index=app splunk_server_group=* sourcetype=cpce-voc-automation-service* "start date received"
 
-gcotechp-test_us-west-2_application_app-0001
+app name in aws cloudwatch and ECS : gcotechp-test_us-west-2_application_app-0001
 
 /* DATADOG
 hmm looks like it is running a different boot.sh script than what is in your local repo

@@ -1,0 +1,16 @@
+index=app splunk_server_group=default cpce-voc-automation-service "start date received"
+index=app sourcetype="cpce-voc-automation-service-log" "start date received"
+index=app splunk_server_group=* sourcetype=cpce-voc-automation-service* "start date received"
+
+app name in aws cloudwatch and ECS : gcotechp-test_us-west-2_application_app-0001
+
+/* DATADOG
+hmm looks like it is running a different boot.sh script than what is in your local repo
+https://sre-datadog-agent.s3-us-west-2.amazonaws.com/initscript/boot_pystretch.sh
+versus
+https://github.expedia.biz/ECP/cpce-voc-automation/blob/master/run-scripts/boot.sh
+https://github.expedia.biz/ECP/cpce-voc-automation/blob/master/datadoghelper.sh#L6
+I would try fixing this
+by fixing https://github.expedia.biz/ECP/cpce-voc-automation/blob/master/datadoghelper.sh#L20 to run your local boot.sh instead of the one it downloads
+and then look at the start up logs in the k8 dashboard
+*/

@@ -428,6 +428,7 @@ booker();
 //IMP: We don't have access to manually create closures, this is a JS feature that
 // happens automatically. We can't even access closed over variables explicitly as
 // a closure is not a tangible JS object.
+<<<<<<< HEAD
 console.dir(booker);
 
 const boardPassengers = function (n, wait) {
@@ -460,3 +461,6 @@ boardPassengers(240, 5);
     .querySelector('body')
     .addEventListener('click', () => (header.style.color = 'blue'));
 })();
+=======
+console.dir(booker);
+>>>>>>> 6fefe9fca7a3cbe40b40bab6ea5f8738c78dafd4

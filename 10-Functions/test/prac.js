@@ -459,4 +459,5 @@ boardPassengers(240, 5);
   document
     .querySelector('body')
     .addEventListener('click', () => (header.style.color = 'blue'));
+      // the reason the above line's () (callback func) got access to 'header' variable is because of closure
 })();

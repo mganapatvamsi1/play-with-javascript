@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // promise example === creating createAudioFileAsync()
 // function successCallback(result) {
@@ -53,77 +53,77 @@ console.log(compute2(1001));
 // testing spread operators:
 const testArr = [7, 11, 9, 13];
 console.log(
-  "naive way: ",
+  'naive way: ',
   Math.max(testArr[0], testArr[1], testArr[2], testArr[3])
 );
-console.log("using spread operator: ", Math.max(...testArr));
+console.log('using spread operator: ', Math.max(...testArr));
 
 const greet = function (name1, name2) {
   console.log(`Hello ${name1} and ${name2}.`);
 };
-greet("Jack", "Jill");
-const testNames = ["Tom", "Jerry"];
+greet('Jack', 'Jill');
+const testNames = ['Tom', 'Jerry'];
 // greet(testNames); // this doesn't work
 greet(...testNames); // using spread operator
 
-const names1 = ["Raj", "Aryan", "Malhotra"];
-const names2 = ["Teddy", "Perry"];
+const names1 = ['Raj', 'Aryan', 'Malhotra'];
+const names2 = ['Teddy', 'Perry'];
 const namesNew = console.log([
-  "Charles",
+  'Charles',
   ...names1,
-  "Jimmy",
+  'Jimmy',
   ...names2,
-  "Scott",
+  'Scott',
 ]);
 
-const mani = Object.freeze({ name: "ManiG", age: 30 });
+const mani = Object.freeze({ name: 'ManiG', age: 30 });
 // here the spread operator is used to spread the object
 const maniOld = { ...mani, age: mani.age - 1 };
-console.log("current obj: ", mani);
-console.log("old obj: ", maniOld);
+console.log('current obj: ', mani);
+console.log('old obj: ', maniOld);
 
 //default parameters:
 // we can either pass just a default value or a default value with expression
 // hre the expr can use the paramters that are present towards its left
-const greet2 = function (name, msg = "Howdy${name.length}") {
+const greet2 = function (name, msg = 'Howdy${name.length}') {
   // passing default parameters
   console.log(`${msg} ${name}`);
 };
-console.log(greet2("Raj"));
-console.log(greet2("Aryan", "Hi"));
+console.log(greet2('Raj'));
+console.log(greet2('Aryan', 'Hi'));
 
-const names3 = ["Raj", "Aryan", "Malhotra", "Teddy", "Perry", "Charles"];
+const names3 = ['Raj', 'Aryan', 'Malhotra', 'Teddy', 'Perry', 'Charles'];
 // traditional for loop (Imperative)
 for (let i = 0; i < names3.length; i++)
   console.log(`traditional way: ${i}---${names3[i]}`);
-console.log("---------------------");
+console.log('---------------------');
 // for of loop (this doesn't give index)
 for (const name of names3) console.log(`enhanced way: ${name}---`);
-console.log("---------------------");
+console.log('---------------------');
 // for of with index
 for (const entry of names3.entries()) console.log(entry);
-console.log("---------------------");
+console.log('---------------------');
 // for of more generic way
 for (const entry of names3.entries()) console.log(`${entry[0]}---${entry[1]}`);
-console.log("---------------------");
+console.log('---------------------');
 for (const entry of names3.entries()) {
   const i = entry[0];
   const name = entry[1];
   console.log(`${i}---${name}`);
 }
-console.log("---------------------");
+console.log('---------------------');
 // using de-structuring
 for (const [key, value] of names3.entries()) {
   // Here we are iterating and de-structuring at the same time
   console.log(`${key}---${value}`);
 }
-console.log("---------------------");
+console.log('---------------------');
 const getPerson = function () {
-  return ["Raj", "Aryan", "Malhotra", "Charles"];
+  return ['Raj', 'Aryan', 'Malhotra', 'Charles'];
 };
 const [first, second, third, fourth] = getPerson();
 console.log(`${first}-${second}-${third}-${fourth}`);
-console.log("---------------------");
+console.log('---------------------');
 
 // default Parameters
 const bookings = [];
@@ -136,40 +136,40 @@ const createBooking = function (flightNo, numOfPassengers = 2, price = 100.0) {
   console.log(booking);
   bookings.push(booking);
 };
-createBooking("22338");
-createBooking("ABCDEFG", 10, 250.0);
-createBooking("ABCDEFG", undefined, 250.0); // leaving the 2nd parameter as default
+createBooking('22338');
+createBooking('ABCDEFG', 10, 250.0);
+createBooking('ABCDEFG', undefined, 250.0); // leaving the 2nd parameter as default
 
 // Functions accepting callback functions
 // const toLowerCase = function(str) {
 //   return str.replace(/ /g, '').toLowerCase();
 // }
-const toLowerCase = (str) => str.replace(/ /g, " ").toLowerCase();
+const toLowerCase = str => str.replace(/ /g, ' ').toLowerCase();
 const firstWordUpper = function (str) {
-  const [first, ...others] = str.split(" ");
-  return [first.toUpperCase(), ...others].join(" ");
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
 };
 // higher order function
 const transform = function (str, func) {
   console.log(`Original string is: ${str}`);
   console.log(`Transformed string is: ${func(str)}`);
 };
-transform("Javascript is the best language", firstWordUpper);
-transform("JAVA IS ONE of the MOST USED LANGUAGE", toLowerCase);
+transform('Javascript is the best language', firstWordUpper);
+transform('JAVA IS ONE of the MOST USED LANGUAGE', toLowerCase);
 // functions calling other Functions
 const greetNormal = function (greeting) {
   return function (name) {
     console.log(`${greeting} ${name}!`);
   };
 };
-greetNormal("GoodNight")("Mani");
-const greetArrow = (greeting) => (name) => console.log(`${greeting} ${name}!`);
-greetArrow("GoodNight")("Mani");
+greetNormal('GoodNight')('Mani');
+const greetArrow = greeting => name => console.log(`${greeting} ${name}!`);
+greetArrow('GoodNight')('Mani');
 
 // call and apply methods
 const lufthansa = {
-  airline: "lufthansa",
-  iataCode: "LH",
+  airline: 'lufthansa',
+  iataCode: 'LH',
   bookings: [],
   // book: function() {
   // this is enhanced object syntax
@@ -183,52 +183,52 @@ const lufthansa = {
     });
   },
 };
-lufthansa.book(217, "ManiG");
-lufthansa.book(195, "TuyenLe");
+lufthansa.book(217, 'ManiG');
+lufthansa.book(195, 'TuyenLe');
 console.log(lufthansa);
 
 const genericBook = lufthansa.book;
 
 const popoyes = {
-  airline: "popoyes",
-  iataCode: "PY",
+  airline: 'popoyes',
+  iataCode: 'PY',
   bookings: [],
 };
 
 const chickenWings = {
-  airline: "chickenWings",
-  iataCode: "CW",
+  airline: 'chickenWings',
+  iataCode: 'CW',
   bookings: [],
 };
 // genericBook('2222', 'Raj Aryan'); (this doesn't work)
 //note: here all the arguments after the first argument are arguments of the actual function.
 // call()
-genericBook.call(lufthansa, 2222, "Raj");
-console.log("lufthansa object through call:: ", lufthansa);
+genericBook.call(lufthansa, 2222, 'Raj');
+console.log('lufthansa object through call:: ', lufthansa);
 
-genericBook.call(popoyes, 5555, "Aryan");
-console.log("popoyes object through call:: ", popoyes);
+genericBook.call(popoyes, 5555, 'Aryan');
+console.log('popoyes object through call:: ', popoyes);
 
-genericBook.call(chickenWings, 7777, "Malhotra");
-console.log("chickenWings object through call:: ", chickenWings);
+genericBook.call(chickenWings, 7777, 'Malhotra');
+console.log('chickenWings object through call:: ', chickenWings);
 
 // apply() ==> apply does the same thing as call() but only difference is that
 // call() takes in a list of arguments whereas apply() takes in an array.
-const lufData = [2222, "Raj"];
+const lufData = [2222, 'Raj'];
 genericBook.apply(lufthansa, lufData);
-console.log("lufthansa object through apply:: ", lufthansa);
+console.log('lufthansa object through apply:: ', lufthansa);
 
-const popoData = [5555, "Raj"];
+const popoData = [5555, 'Raj'];
 genericBook.apply(popoyes, popoData);
-console.log("popoyes object through apply:: ", popoyes);
+console.log('popoyes object through apply:: ', popoyes);
 
-const chicData = [7777, "Raj"];
+const chicData = [7777, 'Raj'];
 genericBook.apply(chickenWings, chicData);
-console.log("chickenWings object through apply:: ", chickenWings);
+console.log('chickenWings object through apply:: ', chickenWings);
 
 //but we can just use the call method instead of apply like below::
 genericBook.call(chickenWings, ...chicData);
-console.log("chickenWings object again through call:: ", chickenWings);
+console.log('chickenWings object again through call:: ', chickenWings);
 
 // bind() ==> just like the call(), bind() also allows us to manually set
 // the 'this' keyword for any function call but the difference is that bind()
@@ -238,22 +238,22 @@ console.log("chickenWings object again through call:: ", chickenWings);
 // genericBook.call(lufthansa, 2222, 'Raj');
 // genericBook.call(popoyes, 5555, 'Aryan');
 // genericBook.call(chickenWings, 7777, 'Malhotra');
-console.log("----------------");
+console.log('----------------');
 const newLufthansa = genericBook.bind(lufthansa);
 const newLufthansa2222 = genericBook.bind(lufthansa, 2222);
-newLufthansa(2222, "Raj");
-newLufthansa2222("Raj");
-console.log("----------------");
+newLufthansa(2222, 'Raj');
+newLufthansa2222('Raj');
+console.log('----------------');
 const newPopoyes = genericBook.bind(popoyes);
 const newPopoyes5555 = genericBook.bind(popoyes, 5555);
-newPopoyes(5555, "Aryan");
-newPopoyes5555("Aryan");
-console.log("----------------");
+newPopoyes(5555, 'Aryan');
+newPopoyes5555('Aryan');
+console.log('----------------');
 const newChicWings = genericBook.bind(chickenWings);
 const newChicWings7777 = genericBook.bind(chickenWings, 7777);
-newChicWings(7777, "Malhotra");
-newChicWings7777("Malhotra");
-console.log("----------------");
+newChicWings(7777, 'Malhotra');
+newChicWings7777('Malhotra');
+console.log('----------------');
 
 // bind() with eventListeners:
 lufthansa.planes = 300;
@@ -266,8 +266,8 @@ lufthansa.buyPlane = function () {
 // lufthansa.buyPlane();
 
 document
-  .querySelector(".buy")
-  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
 
 // Partial Application
 // const addTax = (rate, value) => value + (value * rate)/100;
@@ -278,9 +278,9 @@ console.log(addTax(0.1, 300));
 // to have a generic tax and use bind() to preset a fixed rate always for that:
 const addGST = addTax.bind(null, 0.23); // here as the default can be any object so using it as null
 // the above line is equivalent to the below:
-const addGstArr = (value) => value + value * 0.33;
-console.log("using bind: ", addGST(1000));
-console.log("using arrow func: ", addGstArr(1000));
+const addGstArr = value => value + value * 0.33;
+console.log('using bind: ', addGST(1000));
+console.log('using arrow func: ', addGstArr(1000));
 
 //IMP: for bind() its important to check the order of arguments i.e, if we want to preset the rate
 // then it has to be the first argument in the function otherwise it cannot really work.
@@ -292,12 +292,12 @@ const addTaxRate = function (rate) {
   };
 };
 const addGST3 = addTaxRate(0.33)(1000);
-console.log("using func calling other func syntax: ", addGST3);
+console.log('using func calling other func syntax: ', addGST3);
 
-const addTaxRate2 = (rate) => (value) => value + value * rate;
+const addTaxRate2 = rate => value => value + value * rate;
 const addGST4 = addTaxRate(0.33); // as this is the first one so this needs rate
 const addGST5 = addGST4(1000); // this is the inner one and needs value
-console.log("using func calling other func using arr func syntax: ", addGST5);
+console.log('using func calling other func using arr func syntax: ', addGST5);
 
 // coding challenge--1:
 /*
@@ -333,14 +333,14 @@ Test data for bonus:
 § Data2:[1,5,3,9,6,1]
 */
 const poll = {
-  question: "What is your favorite programming language?",
-  options: ["0: JavaScript", "1: Python", "2: Kotlin", "3: Java"],
+  question: 'What is your favorite programming language?',
+  options: ['0: JavaScript', '1: Python', '2: Kotlin', '3: Java'],
   answers: new Array(4).fill(0), // [0, 0, 0, 0]
   registerNewAnswer() {
     // Get answer
     const answer = Number(
       prompt(
-        `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+        `${this.question}\n${this.options.join('\n')}\n(Write option number)`
       )
     );
     // console.log(answer);
@@ -353,19 +353,19 @@ const poll = {
     // } else console.log("this is not a valid answer", this.answers, answer);
 
     // using short circuiting and operator
-    typeof answer === "number" &&
+    typeof answer === 'number' &&
       answer < this.answers.length &&
       this.answers[answer]++;
     // console.log(this.answers);
     this.displayResults();
-    this.displayResults("string");
+    this.displayResults('string');
   },
   // display poll results
-  displayResults(type = "array") {
+  displayResults(type = 'array') {
     // ES6 default parameter
-    type === "array" && console.log(this.answers);
-    type === "string" &&
-      console.log(`Poll results are ${this.answers.join(", ")}`);
+    type === 'array' && console.log(this.answers);
+    type === 'string' &&
+      console.log(`Poll results are ${this.answers.join(', ')}`);
     // we can use join() on a array like above line to form a string.
   },
 };
@@ -377,13 +377,13 @@ const poll = {
 // querySelector object, that's why this would be undefined
 
 document
-  .querySelector(".poll")
+  .querySelector('.poll')
   // here the bind() is making it point to the poll() object specifically
-  .addEventListener("click", poll.registerNewAnswer.bind(poll));
+  .addEventListener('click', poll.registerNewAnswer.bind(poll));
 
 // hre we need to use call method as we need a new this.. i.e, to manually set a new array.
 poll.displayResults.call({ answers: [5, 2, 3] });
-poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, 'string');
 // As we can see if its only passing an object then we can apply both call and apply,
 // however if we pass in a 'string' as a parameter then we cannot use apply but should only go with call() method
 poll.displayResults.apply({ answers: [5, 2, 3] });
@@ -391,9 +391,9 @@ poll.displayResults.apply({ answers: [1, 5, 3, 9, 6, 1] });
 
 // IIFE
 (function () {
-  console.log("this will only execute once");
+  console.log('this will only execute once');
 })();
-(() => console.log("this will also execute only 1 time"))();
+(() => console.log('this will also execute only 1 time'))();
 
 // Closures:
 // A closure is something we dont create manually but instead it happens
@@ -429,3 +429,34 @@ booker();
 // happens automatically. We can't even access closed over variables explicitly as
 // a closure is not a tangible JS object.
 console.dir(booker);
+
+const boardPassengers = function (n, wait) {
+  const perGroup = n / 3;
+
+  setTimeout(function () {
+    //Here this callback function will wait for (wait * 1000)ms and then execute the steps under this.
+    // also here this callback function is executed completely independently from the boardPassengers function but still
+    // this callback function was able to use all the variables that were in the variable env. in which it was created.
+    // Here the only way this callback func. has got access to the n and perGroup variables is because of closure.
+    console.log(`We are now boarding all ${n} passengers.`);
+    console.log(`There are 3 groups, each with ${perGroup} passengers.`);
+  }, wait * 1000);
+
+  console.log(`Will start boarding in ${wait} seconds.`);
+};
+//IMP: the closure has priority over scope chain
+const perGroup = 1000;
+boardPassengers(240, 5);
+
+// Coding Challenge-2:
+(function () {
+  const header = document.querySelector('h1');
+  header.style.color = 'red';
+
+  // document.querySelector('body').addEventListener('click', function () {
+  //   header.style.color = 'blue';
+  // });
+  document
+    .querySelector('body')
+    .addEventListener('click', () => (header.style.color = 'blue'));
+})();

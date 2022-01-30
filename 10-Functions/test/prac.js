@@ -1,125 +1,431 @@
-'use strict';
-// default parameters
-const bookingArr = [];
-const createBooking = function(flightNo = 'XYZ', numPassengers = 1, price = 100) { //ES6 way of doing
-    //ES5 way of doing
-    // numPassengers = numPassengers || 1;
-    // price = price || 100;
-    const bookingObjUsingEnhancedObjLiteral = {
-        flightNo,
-        numPassengers,
-        price
-    };
-    console.log(bookingObjUsingEnhancedObjLiteral);
-    bookingArr.push(bookingObjUsingEnhancedObjLiteral);
-}
-createBooking('LH123', 5);
-createBooking( undefined,5); // this is to take the default value and skip the 'flightNo' of 'flightNo' parameter
+"use strict";
 
+// promise example === creating createAudioFileAsync()
+// function successCallback(result) {
+//     console.log("success: ", result);
+// }
+// function failureCallback(reslt) {
+//     console.log("failure: ", reslt);
+// }
+// createAudioFileAsync(audioSettings, successCallback, failureCallback);
 
-// How passing arguments works: Value vs Reference
-const flight = 'LH234';
-const maniObj = {
-    name: 'Manikanta Ganapathiraju',
-    passport: 9866603050
+// // if createAudioFileAsync() was rewritten to return a
+// // promise, you would attach your callbacks to return it.
+// createAudioFileAsync(audioSettings).then(successCallback, failureCallback);
+// //Note: callback article: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises
+
+// doSomething()
+// .then(function(result) {
+//   return doSomethingElse(result);
+// })
+// .then(function(newResult) {
+//   return doThirdThing(newResult);
+// })
+// .then(function(finalResult) {
+//   console.log('Got the final result: ' + finalResult);
+// })
+// .catch(failureCallback);
+
+// doSomething()
+// .then(result => doSomethingElse(result))
+// .then(newResult => doThirdThing(newResult))
+// .then(finalResult => console.log('Got the final result: ' + finalResult))
+// .catch(failureCallback);
+//Important: Always return results, otherwise callbacks
+// won't catch the result of a previous promise
+
+//sample promise
+// const compute = function(num, callback) {
+//   setTimeout(() => callback(num * 2), 3000);
+// }
+// compute(5, function(result) {
+//   console.log(result);
+// });
+// compute(5, result => console.log(result)); // doing the same as above using Arrow Functions
+// console.log("called already.!");
+
+const compute2 = function (num) {
+  if (num < 1000) return Promise.resolve(num * 2);
+  return new Promise(function (resolve, reject) {});
 };
-const checkIn = function(flightNo, passenger) {
-    flightNo = 'LH999';
-    // passenger.name = 'Mr.' + passenger.name;
-    passenger.name = passenger.name.padStart(passenger.name.length+Number(3), 'Mr.');
-    // if (passenger.passport === 9866603050) alert('Checked In.!');
-    // else alert('Wrong Passport!');
+console.log(compute2(1001));
+
+// testing spread operators:
+const testArr = [7, 11, 9, 13];
+console.log(
+  "naive way: ",
+  Math.max(testArr[0], testArr[1], testArr[2], testArr[3])
+);
+console.log("using spread operator: ", Math.max(...testArr));
+
+const greet = function (name1, name2) {
+  console.log(`Hello ${name1} and ${name2}.`);
+};
+greet("Jack", "Jill");
+const testNames = ["Tom", "Jerry"];
+// greet(testNames); // this doesn't work
+greet(...testNames); // using spread operator
+
+const names1 = ["Raj", "Aryan", "Malhotra"];
+const names2 = ["Teddy", "Perry"];
+const namesNew = console.log([
+  "Charles",
+  ...names1,
+  "Jimmy",
+  ...names2,
+  "Scott",
+]);
+
+const mani = Object.freeze({ name: "ManiG", age: 30 });
+// here the spread operator is used to spread the object
+const maniOld = { ...mani, age: mani.age - 1 };
+console.log("current obj: ", mani);
+console.log("old obj: ", maniOld);
+
+//default parameters:
+// we can either pass just a default value or a default value with expression
+// hre the expr can use the paramters that are present towards its left
+const greet2 = function (name, msg = "Howdy${name.length}") {
+  // passing default parameters
+  console.log(`${msg} ${name}`);
+};
+console.log(greet2("Raj"));
+console.log(greet2("Aryan", "Hi"));
+
+const names3 = ["Raj", "Aryan", "Malhotra", "Teddy", "Perry", "Charles"];
+// traditional for loop (Imperative)
+for (let i = 0; i < names3.length; i++)
+  console.log(`traditional way: ${i}---${names3[i]}`);
+console.log("---------------------");
+// for of loop (this doesn't give index)
+for (const name of names3) console.log(`enhanced way: ${name}---`);
+console.log("---------------------");
+// for of with index
+for (const entry of names3.entries()) console.log(entry);
+console.log("---------------------");
+// for of more generic way
+for (const entry of names3.entries()) console.log(`${entry[0]}---${entry[1]}`);
+console.log("---------------------");
+for (const entry of names3.entries()) {
+  const i = entry[0];
+  const name = entry[1];
+  console.log(`${i}---${name}`);
 }
-checkIn(flight, maniObj);
-console.log(flight); //'LH234'
-console.log(maniObj);
-
-//The below is same as copying the reference
-//i.e, here we are only copying the reference to the memory heap, but they both point to the same object in memory.
-const flightNum = flight;
-const passenger = maniObj;
-//Imp Note: In summary, passing a primitive type to a function is same as creating a copy just outside the function.
-
-const  newPassport = function(person) {
-    person.passport = Math.trunc(Math.random() * 1000000000);
+console.log("---------------------");
+// using de-structuring
+for (const [key, value] of names3.entries()) {
+  // Here we are iterating and de-structuring at the same time
+  console.log(`${key}---${value}`);
 }
-console.log(newPassport(maniObj)); //{name: 'Mr.Manikanta Ganapathiraju', passport: 9866603050}
-console.log(checkIn(flight, maniObj)); //{name: 'Mr.Manikanta Ganapathiraju', passport: 9866603050}
+console.log("---------------------");
+const getPerson = function () {
+  return ["Raj", "Aryan", "Malhotra", "Charles"];
+};
+const [first, second, third, fourth] = getPerson();
+console.log(`${first}-${second}-${third}-${fourth}`);
+console.log("---------------------");
 
-//In programming there are 2 things: passing by value and passing by reference.
-// Javascript does not have pass by reference, but it only has pass by value.
-// i.e, we pass a reference to a function, but we do not pass by reference.
+// default Parameters
+const bookings = [];
+const createBooking = function (flightNo, numOfPassengers = 2, price = 100.0) {
+  const booking = {
+    flightNo,
+    numOfPassengers,
+    price,
+  };
+  console.log(booking);
+  bookings.push(booking);
+};
+createBooking("22338");
+createBooking("ABCDEFG", 10, 250.0);
+createBooking("ABCDEFG", undefined, 250.0); // leaving the 2nd parameter as default
 
+// Functions accepting callback functions
+// const toLowerCase = function(str) {
+//   return str.replace(/ /g, '').toLowerCase();
+// }
+const toLowerCase = (str) => str.replace(/ /g, " ").toLowerCase();
+const firstWordUpper = function (str) {
+  const [first, ...others] = str.split(" ");
+  return [first.toUpperCase(), ...others].join(" ");
+};
+// higher order function
+const transform = function (str, func) {
+  console.log(`Original string is: ${str}`);
+  console.log(`Transformed string is: ${func(str)}`);
+};
+transform("Javascript is the best language", firstWordUpper);
+transform("JAVA IS ONE of the MOST USED LANGUAGE", toLowerCase);
+// functions calling other Functions
+const greetNormal = function (greeting) {
+  return function (name) {
+    console.log(`${greeting} ${name}!`);
+  };
+};
+greetNormal("GoodNight")("Mani");
+const greetArrow = (greeting) => (name) => console.log(`${greeting} ${name}!`);
+greetArrow("GoodNight")("Mani");
 
-// First class and higher order functions:
+// call and apply methods
+const lufthansa = {
+  airline: "lufthansa",
+  iataCode: "LH",
+  bookings: [],
+  // book: function() {
+  // this is enhanced object syntax
+  book(flightNo, name) {
+    console.log(
+      `${name} has booked a seat on ${this.airline} flight ${this.iataCode}${flightNo}`
+    );
+    this.bookings.push({
+      flight: `${this.iataCode}${flightNo}`,
+      name,
+    });
+  },
+};
+lufthansa.book(217, "ManiG");
+lufthansa.book(195, "TuyenLe");
+console.log(lufthansa);
+
+const genericBook = lufthansa.book;
+
+const popoyes = {
+  airline: "popoyes",
+  iataCode: "PY",
+  bookings: [],
+};
+
+const chickenWings = {
+  airline: "chickenWings",
+  iataCode: "CW",
+  bookings: [],
+};
+// genericBook('2222', 'Raj Aryan'); (this doesn't work)
+//note: here all the arguments after the first argument are arguments of the actual function.
+// call()
+genericBook.call(lufthansa, 2222, "Raj");
+console.log("lufthansa object through call:: ", lufthansa);
+
+genericBook.call(popoyes, 5555, "Aryan");
+console.log("popoyes object through call:: ", popoyes);
+
+genericBook.call(chickenWings, 7777, "Malhotra");
+console.log("chickenWings object through call:: ", chickenWings);
+
+// apply() ==> apply does the same thing as call() but only difference is that
+// call() takes in a list of arguments whereas apply() takes in an array.
+const lufData = [2222, "Raj"];
+genericBook.apply(lufthansa, lufData);
+console.log("lufthansa object through apply:: ", lufthansa);
+
+const popoData = [5555, "Raj"];
+genericBook.apply(popoyes, popoData);
+console.log("popoyes object through apply:: ", popoyes);
+
+const chicData = [7777, "Raj"];
+genericBook.apply(chickenWings, chicData);
+console.log("chickenWings object through apply:: ", chickenWings);
+
+//but we can just use the call method instead of apply like below::
+genericBook.call(chickenWings, ...chicData);
+console.log("chickenWings object again through call:: ", chickenWings);
+
+// bind() ==> just like the call(), bind() also allows us to manually set
+// the 'this' keyword for any function call but the difference is that bind()
+// doesn'r immediately call the function but instead it returns a new function
+// where the 'this' keyword is bound.
+
+// genericBook.call(lufthansa, 2222, 'Raj');
+// genericBook.call(popoyes, 5555, 'Aryan');
+// genericBook.call(chickenWings, 7777, 'Malhotra');
+console.log("----------------");
+const newLufthansa = genericBook.bind(lufthansa);
+const newLufthansa2222 = genericBook.bind(lufthansa, 2222);
+newLufthansa(2222, "Raj");
+newLufthansa2222("Raj");
+console.log("----------------");
+const newPopoyes = genericBook.bind(popoyes);
+const newPopoyes5555 = genericBook.bind(popoyes, 5555);
+newPopoyes(5555, "Aryan");
+newPopoyes5555("Aryan");
+console.log("----------------");
+const newChicWings = genericBook.bind(chickenWings);
+const newChicWings7777 = genericBook.bind(chickenWings, 7777);
+newChicWings(7777, "Malhotra");
+newChicWings7777("Malhotra");
+console.log("----------------");
+
+// bind() with eventListeners:
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+
+  this.planes++;
+  console.log(this.planes);
+};
+// lufthansa.buyPlane();
+
+document
+  .querySelector(".buy")
+  .addEventListener("click", lufthansa.buyPlane.bind(lufthansa));
+
+// Partial Application
+// const addTax = (rate, value) => value + (value * rate)/100;
+// console.log(addTax(10, 300));
+const addTax = (rate, value) => value + value * rate;
+console.log(addTax(0.1, 300));
+
+// to have a generic tax and use bind() to preset a fixed rate always for that:
+const addGST = addTax.bind(null, 0.23); // here as the default can be any object so using it as null
+// the above line is equivalent to the below:
+const addGstArr = (value) => value + value * 0.33;
+console.log("using bind: ", addGST(1000));
+console.log("using arrow func: ", addGstArr(1000));
+
+//IMP: for bind() its important to check the order of arguments i.e, if we want to preset the rate
+// then it has to be the first argument in the function otherwise it cannot really work.
+
+// doing the same as above by using a function calling other function::
+const addTaxRate = function (rate) {
+  return function (value) {
+    return value + value * rate;
+  };
+};
+const addGST3 = addTaxRate(0.33)(1000);
+console.log("using func calling other func syntax: ", addGST3);
+
+const addTaxRate2 = (rate) => (value) => value + value * rate;
+const addGST4 = addTaxRate(0.33); // as this is the first one so this needs rate
+const addGST5 = addGST4(1000); // this is the inner one and needs value
+console.log("using func calling other func using arr func syntax: ", addGST5);
+
+// coding challenge--1:
 /*
- JS treats functions as first class citizens. This means that functions are simply values.
- Functions are just another 'type' of object. We can also pass functions as arguments to OTHER functions.
- We can also return functions FROM functions. Also, we can call methods on functions.
- Higher Order Function: this is a function that receives another function as an argument, or a higher order function is
- something that returns a new function, or both. This is only possible because of first-class functions.
- */
+Let's build a simple poll app!
+A poll has a question, an array of options from which people can choose, 
+and an array with the number of replies for each option. This data is stored
+ in the starter 'poll' object below.
+Your tasks:
+1. Create a method called 'registerNewAnswer' on the 'poll' object. The method does 2 things:
+1.1. Display a prompt window for the user to input the number of the
+selected option. The prompt should look like this: What is your favorite programming language?
+0: JavaScript
+1: Python
+2: Rust
+3: C++
+(Write option number)
+1.2. Based on the input number, update the 'answers' array property. For example, 
+if the option is 3, increase the value at position 3 of the array by 1. 
+Make sure to check if the input is a number and if the number makes sense 
+(e.g. answer 52 wouldn't make sense, right?)
+2. Call this method whenever the user clicks the "Answerpoll" button.
+3. Create a method 'displayResults' which displays the poll results.
+The method takes a string as an input (called 'type'), which can be either 'string' or 'array'. 
+If type is 'array', simply display the results array as it is, using console.log(). 
+This should be the default option. If type is 'string', display a string like 
+"Poll results are 13, 2, 4, 1".
+4. Run the 'displayResults' method at the end of each 'registerNewAnswer' method call.
+5. Bonus: Use the 'displayResults' method to display the 2 arrays in the test data. 
+Use both the 'array' and the 'string' option. Do not put the arrays in the poll object! 
+So what should the this keyword look like in this situation?
+Test data for bonus:
+§ Data1:[5,2,3]
+§ Data2:[1,5,3,9,6,1]
+*/
+const poll = {
+  question: "What is your favorite programming language?",
+  options: ["0: JavaScript", "1: Python", "2: Kotlin", "3: Java"],
+  answers: new Array(4).fill(0), // [0, 0, 0, 0]
+  registerNewAnswer() {
+    // Get answer
+    const answer = Number(
+      prompt(
+        `${this.question}\n${this.options.join("\n")}\n(Write option number)`
+      )
+    );
+    // console.log(answer);
+    // Register or Update answer
+    // if (answer < this.answers.length && typeof answer === "number") {
+    //   this.answers[answer]++;
+    //   console.log("valid case");
+    //   console.log(this.answers);
+    //   console.log(answer);
+    // } else console.log("this is not a valid answer", this.answers, answer);
 
+    // using short circuiting and operator
+    typeof answer === "number" &&
+      answer < this.answers.length &&
+      this.answers[answer]++;
+    // console.log(this.answers);
+    this.displayResults();
+    this.displayResults("string");
+  },
+  // display poll results
+  displayResults(type = "array") {
+    // ES6 default parameter
+    type === "array" && console.log(this.answers);
+    type === "string" &&
+      console.log(`Poll results are ${this.answers.join(", ")}`);
+    // we can use join() on a array like above line to form a string.
+  },
+};
+// poll.registerNewAnswer();
+// document
+//   .querySelector(".poll")
+//   .addEventListener("click", poll.registerNewAnswer);
+// here this points to the current object on which this is getting called i.e, the
+// querySelector object, that's why this would be undefined
 
-// Functions Accepting Callback Functions (Higher Order Functions)
-// func1: replaces all spaces in a word
-const oneWord = function(str) {
-    return str.replace(/ /g, '').toLowerCase(); // returns any string with an empty string.
-}
-const upperFirstWord = function(str) {
-    //1 way of doing:
-    // return str[0].toUpperCase() + str.slice(1); //TODO: this is not complete and need some changes to be made.
+document
+  .querySelector(".poll")
+  // here the bind() is making it point to the poll() object specifically
+  .addEventListener("click", poll.registerNewAnswer.bind(poll));
 
-    //2nd way of doing:
-    const [first, ...others] = str.split(' ');
-    return [first.toUpperCase(), ...others].join(' ');
-}
+// hre we need to use call method as we need a new this.. i.e, to manually set a new array.
+poll.displayResults.call({ answers: [5, 2, 3] });
+poll.displayResults.call({ answers: [1, 5, 3, 9, 6, 1] }, "string");
+// As we can see if its only passing an object then we can apply both call and apply,
+// however if we pass in a 'string' as a parameter then we cannot use apply but should only go with call() method
+poll.displayResults.apply({ answers: [5, 2, 3] });
+poll.displayResults.apply({ answers: [1, 5, 3, 9, 6, 1] });
 
-// higher-order function
-const transformer = function(str, func) {
-    console.log(`Original String" ${str}`);
-    console.log(`Transformed String: ${func(str)}`);
-    console.log(`Transformed By: ${func.name}`);
-}
-transformer('javascript is the best programming language!', upperFirstWord);
-transformer('python is the coolest language ever!', oneWord);
+// IIFE
+(function () {
+  console.log("this will only execute once");
+})();
+(() => console.log("this will also execute only 1 time"))();
 
-//Note: JavaScript uses callbacks all the time.
-const high5 = () => console.log('✋🏻');
-document.body.addEventListener('click', high5);
-//here 'high5' is the callback function and 'addEventListener' is the in-built higher order function.
-
-['raj', 'aryan', 'malhotra', 'mani'].forEach(high5);
-// here 'forEach' is the in-built higher order function and 'high5' is the higher order function.
-
-//Imp Note: Callback functions allow us to create abstraction.
-// Abstraction means we hide the detail of some code implementation because we don't need all that detail
-// and this allows us to think about problems at a higher, more abstract level so that's why it's called an abstraction.
-
-
-// Functions returning other functions
-// using function expression syntax
-const greetFuncExpr = function(greeting) {
-    return function(name) {
-        console.log(`${greeting} ${name}`);
-    }
-}
-// using arrow function syntax
-const greetFuncArrw = greeting => name => console.log(`${greeting} ${name}`);
-
-// Old and first way of calling 'greet' function.
-const greetHowdy = greetFuncExpr('Howdy'); // now as the result of 'greetHowdy' function is another function
-// we need to call it to return the result.
-greetHowdy('ManiG');
-greetHowdy('RajAryan');
-
-// Easier and second way of calling the above 'greet' function.
-greetFuncArrw('Howdy')('ManiG');
-greetFuncArrw('Howdy')('RajAryan');
-
-
-// 'call' and 'apply' methods:
-
-
-
-
+// Closures:
+// A closure is something we dont create manually but instead it happens
+// automatically in certain situations and we just need to recognize those.
+const secureBooking = function () {
+  let passengerCount = 0;
+  return function () {
+    passengerCount++;
+    console.log(`${passengerCount} passengers.`);
+  };
+};
+// secureBooking()();
+// secureBooking()();
+// secureBooking()();
+// secureBooking()();
+// secureBooking()();
+const booker = secureBooking();
+booker();
+booker();
+booker();
+booker();
+booker();
+//IMP: Closure makes a function remember all the variables that exist
+// at the birth place i.e, by the time its created.
+//IMP: A function always has access to the variable environment (VE) of
+// the execution context in which it was created, even after the execution context was gone.
+//IMP: the scope chain is always preserved through the closure even
+// when the scope has already destroyed.
+//IMP: A closure gives a function access to  all the variables of its parent function,
+// even after that parent function has returned. The function keeps a reference to its
+// outer scope, which preserves the scope chain throughout the time.
+//IMP: We don't have access to manually create closures, this is a JS feature that
+// happens automatically. We can't even access closed over variables explicitly as
+// a closure is not a tangible JS object.
+console.dir(booker);

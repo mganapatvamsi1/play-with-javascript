@@ -61,11 +61,10 @@ const inputTransferAmount = document.querySelector('.form__input--amount');
 const inputLoanAmount = document.querySelector('.form__input--loan-amount');
 const inputCloseUsername = document.querySelector('.form__input--user');
 const inputClosePin = document.querySelector('.form__input--pin');
-
+*/
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
 
 const currencies = new Map([
   ['USD', 'United States dollar'],
@@ -74,81 +73,54 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-*/
 
 /////////////////////////////////////////////////
+let arr = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr.slice(1)); // [ 'b', 'c', 'd', 'e' ] => slice() will return a new array.
+// when we call the slice() without any arguments it would create a shallow copy of any array,
+// just like using spread operator like below.
+console.log(arr.slice()); // [ 'a', 'b', 'c', 'd', 'e' ]
+console.log([...arr]); // [ 'a', 'b', 'c', 'd', 'e' ]
 
-// let arr = ['a', 'b', 'c', 'd', 'e'];
-// function iterate(item) { console.log(item); }
-// arr.forEach(iterate);
-// console.log(arr.slice(1));
+//SPLICE
+console.log(`arr before: ${arr}`);
+console.log(`splice: ${arr.splice(2)}`); // splice would mutate the original array.
+console.log(`arr after: ${arr}`); // here we only have the left over elements as
+// splice() deletes the elements from the original array based on the call it does.
+// If we want to delete some element/s from the original array we can use splice():
+console.log(arr.splice(-1)); // [ 'b' ]
+console.log(arr); // [ 'a' ]
+let arr2 = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr2.splice(1, 2)); // ['b', 'c']
+//Note: in splice() the 2nd parameter is the number of elements we want to delete.
+console.log(arr2); // ['a', 'd', 'e']
 
-// Async - await
-// make a function to handle error
-function handleError(fun) {
-  return function (...params) {
-    return fun(...params).catch(function (err) {
-      console.error(`Oops`, err);
-    });
-  };
-}
-// re-writing the same above function using arrow functions
-const handleError2 =
-  fun =>
-  (...params) =>
-    // fun(...params).catch(err => console.error(`Oops again!`, err));
-    fun(...params).catch(console.error);
+//REVERSE
+let arr3 = ['a', 'b', 'c', 'd', 'e'];
+console.log(arr3.reverse()); // ['e', 'd', 'c', 'b', 'a'] // reverse() also mutates the original array
+console.log(arr3); // ['e', 'd', 'c', 'b', 'a'] // the original array is reversed too as reverse() has mutated it.
 
-const catchErrors1 = fn => {
-  return function (req, res, next) {
-    return fn(req, res, next).catch(next);
-  };
-};
+//CONCAT
+let array1 = ['a', 'b', 'c', 'd', 'e'];
+let array2 = ['f', 'g', 'h', 'i', 'j'];
+const letters = array1.concat(array2);
+console.log(letters); // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
+console.log([...array1, ...array2]); // ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j']
 
-//hot shot
-const catchErrors2 = fn => (req, res, next) => fn(req, res, next).catch(next);
+//JOIN
+console.log(letters.join(' - ')); // a - b - c - d - e - f - g - h - i - j
+// join() all the elements into a string,separated by the specified separator string.
 
-console.log(`person1: shows ticket`);
-console.log(`person2: shows ticket`);
+// at()
+console.log(array1); // [ 'a', 'b', 'c', 'd', 'e' ]
+console.log(array1[0]); // a
+// console.log(array1.at(0)); // a => (commenting this as 2022 operators are not supported by node runner as of time of running this)
+// getting the last element of the array
+console.log(array1[array1.length - 1]); // e
+console.log(array1.slice(-1)[0]); // e
+console.log(array1.at(-1)); // e
+// at() also works on strings
+console.log('ManiG'.at(-1)); // G
+console.log('ManiG'.at(0)); // M
 
-const promiseMyWifeBringTicket = new Promise((resolve, reject) => {
-  setTimeout(() => resolve(`ticket`), 4000);
-});
-
-// promiseMyWifeBringTicket
-//   .then(t => console.log(`person3: shows ${t}.`))
-//   .catch(console.error);
-// .catch(err => console.error(`oops error occurred: ${err}`));
-
-const getPopCorn = promiseMyWifeBringTicket
-  .then(t => {
-    console.log(`------START OF POPCORN------`);
-    console.log(`wife: I got the tickets`);
-    console.log(`hus: we should walk in`);
-    console.log(`wife: I am hungry so need some popcorn`);
-    console.log(`------END OF POPCORN------`);
-    return new Promise((resolve, reject) =>
-      resolve(`we got ${t} and popcorn now.`)
-    );
-  })
-  .catch(console.error);
-
-const getButterAndDrink = getPopCorn
-  .then(t => {
-    console.log(`------START OF BUTTER AND DRINK------`);
-    console.log(`hus: Popcorn's ready`);
-    console.log(`hus: now shall we go inside`);
-    console.log(`wife: I want some butter on my popcorn and a soda`);
-    console.log(`------END OF BUTTER AND DRINK------`);
-    return new Promise((resolve, reject) =>
-      resolve(
-        `ok wifu.. now we have ticket, popcorn with butter added and coke too.`
-      )
-    );
-  })
-  .catch(console.error);
-
-getButterAndDrink.then(console.log).catch(console.error);
-
-console.log(`person4: shows ticket`);
-console.log(`person5: shows ticket`);
+// Looping Arrays: forEach

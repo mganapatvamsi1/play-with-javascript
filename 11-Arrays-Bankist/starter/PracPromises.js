@@ -71,9 +71,5 @@ getButterAndDrink.then(console.log).catch(console.error);
 console.log(`person4: shows ticket`);
 console.log(`person5: shows ticket`);
 console.log(`-------------END OF PROMISES---------------`);
-console.log(`-------------END OF PROMISES---------------`);
-console.log(`-------------END OF PROMISES---------------`);
-console.log(`-------------END OF PROMISES---------------`);
-
-// now doing in async-await way
-//Note: async func() returns a promise back.
+console.log(`----------------------------`);
+console.log(`----------------------------`);

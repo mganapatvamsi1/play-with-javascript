@@ -114,7 +114,7 @@ console.log(letters.join(' - ')); // a - b - c - d - e - f - g - h - i - j
 // at()
 console.log(array1); // [ 'a', 'b', 'c', 'd', 'e' ]
 console.log(array1[0]); // a
-// console.log(array1.at(0)); // a => (commenting this as 2022 operators are not supported by node runner as of time of running this)
+console.log(array1.at(0)); // a => (commenting this as 2022 operators are not supported by node runner as of time of running this)
 // getting the last element of the array
 console.log(array1[array1.length - 1]); // e
 console.log(array1.slice(-1)[0]); // e

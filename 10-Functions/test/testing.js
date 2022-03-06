@@ -185,11 +185,12 @@ class Car {
     // method
     color() {return 'Mat-Black';} 
 
-    // property
+    // getter property
     get colorProp() {
         return this.storedColor;
     } 
 
+    // setter property
     set colorProp(value) {
         this.storedColor = value;
     } 
@@ -200,10 +201,10 @@ console.log(car);
 car.drive(20);
 console.log(car);
 console.log(car.color()); // Mat-Black
-console.log(car.colorProp); // Red
-console.log(car.colorProp = 'test'); // Red
+console.log(car.colorProp); // Green
+console.log(car.colorProp = 'test'); // test
 
-
+//Important Note: In JS gets are deeper but sets are shallow.
 
 
 

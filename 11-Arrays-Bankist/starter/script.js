@@ -224,9 +224,38 @@ const accounts = [account1, account2, account3, account4];
 
 // data transformations (map, filter and reduce)
 const testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+//Note: map() methods returns a brand new arr. 
 const newArr1 = testArr.map(ele => ele * 2);
 const newArr2 = testArr
                     .filter(ele => ele % 2 !== 0)
                     .map(ele => ele * 3);
 console.log('newArr1:: ', newArr1);
 console.log('newArr2:: ', newArr2);
+const reduceFuncTest = testArr
+                          .filter(ele => ele % 2 === 0)
+                          .reduce((prev, next) => (prev + next), 0)
+console.log('arrReduceTest:: ', reduceFuncTest);
+
+const movementsArr = [200, 450, -400, 3000, -650, -130, 70, 1300];
+const currToUsd = 1.5;
+// const movementsUSD = movementsArr.map(function(mov) {
+//   return mov * currToUsd;
+// });
+const movementsUSD = movementsArr.map(mov => mov * currToUsd);
+console.log('movementsUSD:: ', movementsUSD);
+
+const movementsUSDForEach = [];
+for (const mov of movementsArr) movementsUSDForEach.push(mov * currToUsd);
+console.log('movementsUSDForEach:: ', movementsUSDForEach);
+
+
+// const movementDescriptions = movementsArr.map((mov, index, arr) => {
+//   if (mov > 0) return `mov ${index + 1}: deposited ${mov}`;
+//   else return `mov ${index + 1}: withdrew ${Math.abs(mov)}`;
+// });
+// const movementDescriptions = movementsArr.map((mov, index, arr) => {
+// return `mov ${index + 1}:You've ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
+// });
+const movementDescriptions = movementsArr.map((mov, index, arr) => `mov ${index + 1}:You've ${mov > 0 ? 'deposited' 
+: 'withdrew'} ${Math.abs(mov)}`);
+console.log('movementDescriptions:: ', movementDescriptions);

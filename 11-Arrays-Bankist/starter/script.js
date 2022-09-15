@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
@@ -83,21 +83,21 @@ for (const [i, num] of movementsArr.entries()) {
   else console.log(`At index ${i}: withdrew ${num}`);
 }
 
-//IMP NOTE: forEach is a higher order function which requires 
+//IMP NOTE: forEach is a higher order function which requires
 // a callback function in order to tell it what to do
 // testArr.forEach(ele => console.log(ele));
 // testArr.forEach(console.log);
 // testArr.filter(ele => ele % 2 == 0).forEach(ele => console.log(ele));
 // here the callback func is receiving the 'num' as the argument in each iteration
 console.log(`using forEach loop`)
-// here  in forEach callback function syntax: 1st parameter is: current element, 
+// here  in forEach callback function syntax: 1st parameter is: current element,
 // 2nd parameter is index, 3rd and last parameter is the complete array.
 movementsArr.forEach(function(num, index, completeArr) {
     if (num > 0) console.log(`At index ${index}: deposited ${num}`);
     else console.log(`At index ${index}: withdrew ${num}`);
     if (index === completeArr.length - 1) console.log(`complete arr:: `, completeArr)
 })
-//IMP NOTE: the 'continue' and 'break' statements don't work in forEach 
+//IMP NOTE: the 'continue' and 'break' statements don't work in forEach
 // at all where as we can use them in 'for of loop' i.e, 'forEach' loop always
 // loops around a complete array.
 const currencyMap = [
@@ -114,7 +114,7 @@ currencies.forEach(function(entry, index, allEntries) {
 
 const currenciesSet = ['USD', 'INR', 'GBP', 'VNR', 'EUR', 'EUR', 'INR', 'USD']
 const currenciesUnique = new Set(currenciesSet)
-// console.log(`unique values: ${currenciesUnique}`); //this is only returning an object but not the elements of set ?? 
+// console.log(`unique values: ${currenciesUnique}`); //this is only returning an object but not the elements of set ??
 // console.log(currenciesUnique); // this is working
 // currenciesUnique.forEach(function(value, key, fullSet) {
 currenciesUnique.forEach(function(value, _, fullSet) {
@@ -124,7 +124,7 @@ currenciesUnique.forEach(function(value, _, fullSet) {
 })
 // IMP NOTE: the 2nd parameter i.e, 'key' for a 'set' doesn't make any sense as sets don't have keys.
 
-// converting a for loop to a forEach loop 
+// converting a for loop to a forEach loop
 const items = ['item1', 'item2', 'item3'];
 const copyItems = [];
 const copyItemsNew = [];
@@ -145,96 +145,103 @@ console.log('-----END OF FOREACH-----');
 // BANKIST APP
 // Data
 const account1 = {
-  owner: 'Manikanta Ganapathiraju',
-  movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
-  interestRate: 1.2, // %
-  pin: 1111,
+  owner: "Manikanta Ganapathiraju", movements: [200, 450, -400, 3000, -650, -130, 70, 1300], interestRate: 1.2, // %
+  pin: 1111
 };
 
 const account2 = {
-  owner: 'Tuyen Le',
-  movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
-  interestRate: 1.5,
-  pin: 2222,
+  owner: "Tuyen Le", movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30], interestRate: 1.5, pin: 2222
 };
 
 const account3 = {
-  owner: 'Raj Aryan',
-  movements: [200, -200, 340, -300, -20, 50, 400, -460],
-  interestRate: 0.7,
-  pin: 3333,
+  owner: "Raj Aryan", movements: [200, -200, 340, -300, -20, 50, 400, -460], interestRate: 0.7, pin: 3333
 };
 
 const account4 = {
-  owner: 'Rahul Malhotra',
-  movements: [430, 1000, 700, 50, 90],
-  interestRate: 1,
-  pin: 4444,
+  owner: "Rahul Malhotra", movements: [430, 1000, 700, 50, 90], interestRate: 1, pin: 4444
 };
 
 const accounts = [account1, account2, account3, account4];
 
 // Elements
-// const labelWelcome = document.querySelector('.welcome');
-// const labelDate = document.querySelector('.date');
-// const labelBalance = document.querySelector('.balance__value');
-// const labelSumIn = document.querySelector('.summary__value--in');
-// const labelSumOut = document.querySelector('.summary__value--out');
-// const labelSumInterest = document.querySelector('.summary__value--interest');
-// const labelTimer = document.querySelector('.timer');
+const labelWelcome = document.querySelector(".welcome");
+const labelDate = document.querySelector(".date");
+const labelBalance = document.querySelector(".balance__value");
+const labelSumIn = document.querySelector(".summary__value--in");
+const labelSumOut = document.querySelector(".summary__value--out");
+const labelSumInterest = document.querySelector(".summary__value--interest");
+const labelTimer = document.querySelector(".timer");
 
-// const containerApp = document.querySelector('.app');
-// const containerMovements = document.querySelector('.movements');
+const containerApp = document.querySelector(".app");
+const containerMovements = document.querySelector(".movements");
 
-// const btnLogin = document.querySelector('.login__btn');
-// const btnTransfer = document.querySelector('.form__btn--transfer');
-// const btnLoan = document.querySelector('.form__btn--loan');
-// const btnClose = document.querySelector('.form__btn--close');
-// const btnSort = document.querySelector('.btn--sort');
+const btnLogin = document.querySelector(".login__btn");
+const btnTransfer = document.querySelector(".form__btn--transfer");
+const btnLoan = document.querySelector(".form__btn--loan");
+const btnClose = document.querySelector(".form__btn--close");
+const btnSort = document.querySelector(".btn--sort");
 
-// const inputLoginUsername = document.querySelector('.login__input--user');
-// const inputLoginPin = document.querySelector('.login__input--pin');
-// const inputTransferTo = document.querySelector('.form__input--to');
-// const inputTransferAmount = document.querySelector('.form__input--amount');
-// const inputLoanAmount = document.querySelector('.form__input--loan-amount');
-// const inputCloseUsername = document.querySelector('.form__input--user');
-// const inputClosePin = document.querySelector('.form__input--pin');
+const inputLoginUsername = document.querySelector(".login__input--user");
+const inputLoginPin = document.querySelector(".login__input--pin");
+const inputTransferTo = document.querySelector(".form__input--to");
+const inputTransferAmount = document.querySelector(".form__input--amount");
+const inputLoanAmount = document.querySelector(".form__input--loan-amount");
+const inputCloseUsername = document.querySelector(".form__input--user");
+const inputClosePin = document.querySelector(".form__input--pin");
 
-// const displayMovements = function(movements) {
-//   containerMovements.innerHTML = '';
+const displayMovements = function(movements) {
+  containerMovements.innerHTML = "";
 
-//   movements.forEach(function (mov, index) {
-//     const transactionType = mov > 0 ? 'deposit' : 'withdrawal';
+  movements.forEach(function(mov, index) {
+    const transactionType = mov > 0 ? "deposit" : "withdrawal";
 
-//     const html = `
-//     <div class="movements__row">
-//       <div class="movements__type movements__type--${transactionType}">${index + 1} ${transactionType}</div>
-//       <div class="movements__value">${mov}€</div>
-//     </div>
-//     `;
-    
-//     // need to attach this 'html' into the current container::
-//     containerMovements.insertAdjacentHTML('afterbegin', html);
-//     // containerMovements.insertAdjacentHTML('beforeend', html);
-//   });
+    const html = `
+    <div class="movements__row">
+      <div class="movements__type movements__type--${transactionType}">${index + 1} ${transactionType}</div>
+      <div class="movements__value">${mov}€</div>
+    </div>
+    `;
 
-// }
-// displayMovements(account1.movements)
-// console.log(containerMovements.innerHTML)
+    // need to attach this 'html' into the current container::
+    containerMovements.insertAdjacentHTML("afterbegin", html);
+    // containerMovements.insertAdjacentHTML('beforeend', html);
+  });
+
+};
+displayMovements(account1.movements);
+console.log(containerMovements.innerHTML);
+
+const createUsernames = function(accts) {
+  accts.forEach(function(acct) {
+    acct.username = acct.owner
+      .toLowerCase()
+      .split(" ")
+      .map(ownerName => ownerName[0])
+      .join("");
+  });
+};
+createUsernames(accounts);
+
+const calcDisplayBalance = function(movements) {
+  const balance = movements.reduce((acc, mov) => acc + mov, 0);
+  labelBalance.textContent = `${balance} USD`;
+};
+calcDisplayBalance(account1.movements);
 
 // data transformations (map, filter and reduce)
+console.log(`--------START DATA TRANSFORMATIONS-------------`);
 const testArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-//Note: map() methods returns a brand new arr. 
+//Note: map() methods returns a brand new arr.
 const newArr1 = testArr.map(ele => ele * 2);
 const newArr2 = testArr
-                    .filter(ele => ele % 2 !== 0)
-                    .map(ele => ele * 3);
-console.log('newArr1:: ', newArr1);
-console.log('newArr2:: ', newArr2);
+  .filter(ele => ele % 2 !== 0)
+  .map(ele => ele * 3);
+console.log("newArr1:: ", newArr1);
+console.log("newArr2:: ", newArr2);
 const reduceFuncTest = testArr
-                          .filter(ele => ele % 2 === 0)
-                          .reduce((prev, next) => (prev + next), 0)
-console.log('arrReduceTest:: ', reduceFuncTest);
+  .filter(ele => ele % 2 === 0)
+  .reduce((prev, next) => (prev + next), 0);
+console.log("arrReduceTest:: ", reduceFuncTest);
 
 const movementsArr = [200, 450, -400, 3000, -650, -130, 70, 1300];
 const currToUsd = 1.5;
@@ -242,12 +249,11 @@ const currToUsd = 1.5;
 //   return mov * currToUsd;
 // });
 const movementsUSD = movementsArr.map(mov => mov * currToUsd);
-console.log('movementsUSD:: ', movementsUSD);
+console.log("movementsUSD:: ", movementsUSD);
 
 const movementsUSDForEach = [];
 for (const mov of movementsArr) movementsUSDForEach.push(mov * currToUsd);
-console.log('movementsUSDForEach:: ', movementsUSDForEach);
-
+console.log("movementsUSDForEach:: ", movementsUSDForEach);
 
 // const movementDescriptions = movementsArr.map((mov, index, arr) => {
 //   if (mov > 0) return `mov ${index + 1}: deposited ${mov}`;
@@ -256,6 +262,83 @@ console.log('movementsUSDForEach:: ', movementsUSDForEach);
 // const movementDescriptions = movementsArr.map((mov, index, arr) => {
 // return `mov ${index + 1}:You've ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
 // });
-const movementDescriptions = movementsArr.map((mov, index, arr) => `mov ${index + 1}:You've ${mov > 0 ? 'deposited' 
-: 'withdrew'} ${Math.abs(mov)}`);
-console.log('movementDescriptions:: ', movementDescriptions);
+const movementDescriptions = movementsArr.map((mov, index, arr) => `mov ${index + 1}:You've ${mov > 0 ? "deposited" : "withdrew"} ${Math.abs(mov)}`);
+console.log("movementDescriptions:: ", movementDescriptions);
+//152. Filter method
+console.log("-------------ARR FILTER START-------------");
+// if the current element is > 0 then push it into a new arr. (using filter)
+// const deposits = movementsArr.filter(function(mov) {return mov > 0});
+const deposits = movementsArr.filter(mov => mov > 0);
+console.log("movementsArr:: ", movementsArr);
+console.log("deposits:: ", deposits);
+
+// if the current element is > 0 then push it into a new arr. (using forEach)
+const elementsGreaterThanZero = [];
+for (const ele of movementsArr) if (ele > 0) elementsGreaterThanZero.push(ele);
+console.log("elementsGreaterThanZero:: ", elementsGreaterThanZero);
+// create an arr of withdrawals
+
+// const arrOfWithdrawalsUsingFilter = movementsArr.filter(function(mov) {
+//   return mov <= 0;
+//   });
+const arrOfWithdrawalsUsingFilter = movementsArr.filter(mov => mov <= 0);
+console.log("arrOfWithdrawalsUsingFilter:: ", arrOfWithdrawalsUsingFilter);
+const arrOfWithdrawalsUsingForEach = [];
+for (const withdrawalEle of movementsArr) if (withdrawalEle <= 0) arrOfWithdrawalsUsingForEach.push(withdrawalEle);
+console.log("arrOfWithdrawalsUsingForEach:: ", arrOfWithdrawalsUsingForEach);
+
+
+console.log("-------------ARR FILTER END-------------");
+
+//153. Reduce method
+console.log("-------------ARR REDUCE START-------------");
+// Note: we use `reduce method` to boil down all the elements in an array to one single value.
+console.log(`movementsArr: ${movementsArr}`);
+// adding up all the elements of movement arr => reduce
+const sumOfMovsReduce1 = movementsArr.reduce(function(accumulator, current, i, arr) {
+  return accumulator + current;
+}, 0);
+const sumOfMovsReduce = movementsArr.reduce((accu, curr) => accu + curr, 0);
+console.log(`sumOfMovsReduce1: ${sumOfMovsReduce1}`);
+console.log(`sumOfMovsReduce2: ${sumOfMovsReduce}`);
+
+// adding up all the elements of movement arr => forEach
+let sumOfMovsForEach = 0; // this is the initial accumulator balance
+for (const mov of movementsArr) sumOfMovsForEach += mov;
+console.log(`sumOfMovsForEach: ${sumOfMovsForEach}`);
+
+// find maximum value of movementsArr
+let maxValueUsingForLoop = Number.MIN_VALUE;
+for (const max of movementsArr) {
+  if (max > maxValueUsingForLoop) maxValueUsingForLoop = max;
+}
+console.log(`maxValue using forLoop:: ${maxValueUsingForLoop}`)
+let maxValueUsingReduce = Number.MIN_VALUE;
+const reduceMaxValue = movementsArr.reduce((accu, curr) => {
+  if (curr > maxValueUsingReduce) maxValueUsingReduce = curr;
+}, 0)
+console.log(`maxValue using reduce:: ${reduceMaxValue}`)
+
+
+console.log("-------------ARR REDUCE END-------------");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

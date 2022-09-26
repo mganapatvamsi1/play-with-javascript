@@ -163,6 +163,7 @@ const account4 = {
 
 const accounts = [account1, account2, account3, account4];
 
+/*
 // Elements
 const labelWelcome = document.querySelector(".welcome");
 const labelDate = document.querySelector(".date");
@@ -227,6 +228,10 @@ const calcDisplayBalance = function(movements) {
   labelBalance.textContent = `${balance} USD`;
 };
 calcDisplayBalance(account1.movements);
+*/
+
+// maximum value
+
 
 // data transformations (map, filter and reduce)
 console.log(`--------START DATA TRANSFORMATIONS-------------`);
@@ -323,11 +328,68 @@ console.log(`maxValue using reduce:: ${reduceMaxValue}`)
 console.log("-------------ARR REDUCE END-------------");
 
 
+//154. coding challenge--2:
+/*
+Coding Challenge #2
+Let's go back to Julia and Kate's study about dogs. This time, they want to convert dog ages to 
+human ages and calculate the average age of the dogs in their study.
+Your tasks:
+Create a function 'calcAverageHumanAge', which accepts an arrays of dog's ages ('ages'), and does 
+the following things in order:
+1. Calculate the dog age in human years using the following formula: if the dog is <= 2 years old,
+ humanAge = 2 * dogAge. If the dog is > 2 years old, humanAge = 16 + dogAge * 4
+2. Exclude all dogs that are less than 18 human years old (which is the same as keeping dogs that are 
+  at least 18 years old)
+3. Calculate the average human age of all adult dogs(you should already know from other challenges how
+   we calculate averages 😉)
+4. Run the function for both test datasets
+Test data:
+§ Data1:[5,2,4,1,15,8,3] § Data2:[16,6,10,5,6,1,4]
+*/
 
+const dogAgeArr = [5,2,4,1,15,8,3];
+const dogAgeNewArr = [16,6,10,5,6,1,4];
+// we are given dog ages and we're trying to convert dog ages to human ages based on given use cases.
 
+// const calcAverageHumanAge = 
+//   //dogAgeArr.filter(dogAge => dogAge <= 2)
+//   dogAgeArr.forEach(dogAge => {
+//     //1.
+//     // dogAge <= 2 ? dogAge.map(age => 2 * age) : dogAge.map(age => 16 + age * 4);
+//     let result;
+//     if (dogAge <= 2) {
+//       result = dogAge.map(age => 2 * age);
+//     } else {
+//       result = dogAge.map(age => 16 + age * 4);
+//     }
+   
+//   });
+  // let numOfElements = Number.MIN_VALUE;
+  // const sumOfHumAges = dogAgeArr.reduce( (accumulator, curr, index, arr) => {
+  //   accumulator + curr, 0, numOfElements = arr.length;
+  // }
+  // );
+  // return sumOfHumAges / numOfElements;
 
+const lessThanTwo = dogAgeArr.filter(dogAge => dogAge <= 2).map(dogAge => 2 * dogAge);
+const greaterThanTwo = dogAgeArr.filter(dogAge => dogAge > 2).map(dogAge => 16 + dogAge * 4);
 
+console.log(`lessThanTwo arr: ${lessThanTwo}`);
+console.log(`greaterThanTwo arr: ${greaterThanTwo}`);
 
+let numOfElements = Number.MIN_VALUE;
+const sumOfHumAges = greaterThanTwo.filter(ele => ele > 18).reduce( 
+  (accumulator, curr, index, arr) =>  {
+    return accumulator + curr
+  }, 0);
+  // return sumOfHumAges / numOfElements;
+
+  // let maxValueUsingReduce = Number.MIN_VALUE;
+  // const reduceMaxValue = movementsArr.reduce((accu, curr) => {
+  //   if (curr > maxValueUsingReduce) maxValueUsingReduce = curr;
+  // }, 0)
+
+console.log(`sumOfHumAges arr: ${sumOfHumAges}`);
 
 
 

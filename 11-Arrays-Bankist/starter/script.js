@@ -145,16 +145,19 @@ console.log('-----END OF FOREACH-----');
 // BANKIST APP
 // Data
 const account1 = {
-  owner: "Manikanta Ganapathiraju", movements: [200, 450, -400, 3000, -650, -130, 70, 1300], interestRate: 1.2, // %
+  owner: "Manikanta Ganapathiraju", movements: [200, 450, -400, 3000, -650, -130, 70, 1300],
+  interestRate: 1.2, // %
   pin: 1111
 };
 
 const account2 = {
-  owner: "Tuyen Le", movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30], interestRate: 1.5, pin: 2222
+  owner: "Tuyen Le", movements: [5000, 3400, -150, -790, -3210, -1000, 8500, -30],
+  interestRate: 1.5, pin: 2222
 };
 
 const account3 = {
-  owner: "Raj Aryan", movements: [200, -200, 340, -300, -20, 50, 400, -460], interestRate: 0.7, pin: 3333
+  owner: "Raj Aryan", movements: [200, -200, 340, -300, -20, 50, 400, -460],
+  interestRate: 0.7, pin: 3333
 };
 
 const account4 = {
@@ -197,7 +200,8 @@ const displayMovements = function(movements) {
 
     const html = `
     <div class="movements__row">
-      <div class="movements__type movements__type--${transactionType}">${index + 1} ${transactionType}</div>
+      <div class="movements__type movements__type--${transactionType}">${index + 1} 
+${transactionType}</div>
       <div class="movements__value">${mov}€</div>
     </div>
     `;
@@ -262,7 +266,9 @@ console.log("movementsUSDForEach:: ", movementsUSDForEach);
 // const movementDescriptions = movementsArr.map((mov, index, arr) => {
 // return `mov ${index + 1}:You've ${mov > 0 ? 'deposited' : 'withdrew'} ${Math.abs(mov)}`
 // });
-const movementDescriptions = movementsArr.map((mov, index, arr) => `mov ${index + 1}:You've ${mov > 0 ? "deposited" : "withdrew"} ${Math.abs(mov)}`);
+const movementDescriptions = movementsArr.map(
+  (mov, index, arr) => `mov ${index + 1}:You've ${mov > 0 ? 
+    "deposited" : "withdrew"} ${Math.abs(mov)}`);
 console.log("movementDescriptions:: ", movementDescriptions);
 //152. Filter method
 console.log("-------------ARR FILTER START-------------");
@@ -284,7 +290,8 @@ console.log("elementsGreaterThanZero:: ", elementsGreaterThanZero);
 const arrOfWithdrawalsUsingFilter = movementsArr.filter(mov => mov <= 0);
 console.log("arrOfWithdrawalsUsingFilter:: ", arrOfWithdrawalsUsingFilter);
 const arrOfWithdrawalsUsingForEach = [];
-for (const withdrawalEle of movementsArr) if (withdrawalEle <= 0) arrOfWithdrawalsUsingForEach.push(withdrawalEle);
+for (const withdrawalEle of movementsArr)
+  if (withdrawalEle <= 0) arrOfWithdrawalsUsingForEach.push(withdrawalEle);
 console.log("arrOfWithdrawalsUsingForEach:: ", arrOfWithdrawalsUsingForEach);
 
 
@@ -295,10 +302,12 @@ console.log("-------------ARR REDUCE START-------------");
 // Note: we use `reduce method` to boil down all the elements in an array to one single value.
 console.log(`movementsArr: ${movementsArr}`);
 // adding up all the elements of movement arr => reduce
-const sumOfMovsReduce1 = movementsArr.reduce(function(accumulator, current, i, arr) {
+const sumOfMovsReduce1 = movementsArr.reduce(
+  function(accumulator, current, i, arr) {
   return accumulator + current;
 }, 0);
-const sumOfMovsReduce = movementsArr.reduce((accu, curr) => accu + curr, 0);
+const sumOfMovsReduce = movementsArr.reduce((accu, curr) =>
+  accu + curr, 0);
 console.log(`sumOfMovsReduce1: ${sumOfMovsReduce1}`);
 console.log(`sumOfMovsReduce2: ${sumOfMovsReduce}`);
 
@@ -313,10 +322,15 @@ for (const max of movementsArr) {
   if (max > maxValueUsingForLoop) maxValueUsingForLoop = max;
 }
 console.log(`maxValue using forLoop:: ${maxValueUsingForLoop}`)
-let maxValueUsingReduce = Number.MIN_VALUE;
+// let maxValueUsingReduce = Number.MIN_VALUE;
+// const reduceMaxValue = movementsArr.reduce((accu, curr) => {
+//   if (curr > maxValueUsingReduce) maxValueUsingReduce = curr;
+// }, 0)
 const reduceMaxValue = movementsArr.reduce((accu, curr) => {
-  if (curr > maxValueUsingReduce) maxValueUsingReduce = curr;
-}, 0)
+  // if (accu > curr) return accu;
+  // else return curr;
+  return accu > curr ? accu : curr;
+}, movementsArr[0]);
 console.log(`maxValue using reduce:: ${reduceMaxValue}`)
 
 

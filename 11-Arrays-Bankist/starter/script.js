@@ -324,6 +324,24 @@ const reduceMaxValue = movementsArr.reduce((accu, curr) => {
 }, 0)
 console.log(`maxValue using reduce:: ${reduceMaxValue}`)
 
+// calculate average age using arrays
+let testArrUsingForLoop = [1, 2, 3, 4, 5];
+let forLoopSum = 0;
+//TODO: why is this not working using traditional for-loop ???
+for (const ele of testArrUsingForLoop) {
+    forLoopSum += ele;
+  }
+  testArrUsingForLoop.forEach(ele => forLoopSum += ele);
+  let testArrUsingReduce = [1, 2, 3, 4, 5];
+  const averageArrReduce = testArrUsingReduce.reduce((accu, curr) => (accu + curr), 0) / testArrUsingReduce.length;
+console.log(`avg. of first five ele's using arr reduce:: ${averageArrReduce}`);
+
+console.log(`avg. of first five ele's using forEach loop::`, forLoopSum / testArrUsingForLoop.length);
+console.log(`type of forLoopSum::`, typeof forLoopSum);
+console.log(`average of first five elements using forLoop:  ${forLoopSum}/${testArrUsingForLoop.length}`);
+console.log(`average of first five elements using forLoop1:  ${forLoopSum}`);
+console.log(`average of first five elements using forLoop2:  ${testArrUsingForLoop.length}`);
+
 
 console.log("-------------ARR REDUCE END-------------");
 
@@ -347,49 +365,56 @@ Test data:
 § Data1:[5,2,4,1,15,8,3] § Data2:[16,6,10,5,6,1,4]
 */
 
-const dogAgeArr = [5,2,4,1,15,8,3];
-const dogAgeNewArr = [16,6,10,5,6,1,4];
+const dogAgeDataSet1 = [5,2,4,1,15,8,3];
+const dogAgeDataSet2 = [16,6,10,5,6,1,4];
 // we are given dog ages and we're trying to convert dog ages to human ages based on given use cases.
+const lessThanTwo = dogAgeDataSet1.filter(dogAge => dogAge <= 2).map(dogAge => 2 * dogAge);
+const greaterThanTwo = dogAgeDataSet1.filter(dogAge => dogAge > 2).map(dogAge => 16 + dogAge * 4);
 
-// const calcAverageHumanAge = 
-//   //dogAgeArr.filter(dogAge => dogAge <= 2)
-//   dogAgeArr.forEach(dogAge => {
-//     //1.
-//     // dogAge <= 2 ? dogAge.map(age => 2 * age) : dogAge.map(age => 16 + age * 4);
-//     let result;
-//     if (dogAge <= 2) {
-//       result = dogAge.map(age => 2 * age);
-//     } else {
-//       result = dogAge.map(age => 16 + age * 4);
-//     }
-   
-//   });
-  // let numOfElements = Number.MIN_VALUE;
-  // const sumOfHumAges = dogAgeArr.reduce( (accumulator, curr, index, arr) => {
-  //   accumulator + curr, 0, numOfElements = arr.length;
-  // }
-  // );
-  // return sumOfHumAges / numOfElements;
+const refArr = [];
+// convert this to a filter and map array function::
+// for (let ele of dogAgeDataSet1) {
+//   //TODO: convert this to a ternary operator
+//   if (ele <= 2) {
+//     ele = 2 * ele;
+//     refArr.push(ele);
+//   } else {
+//     ele = 16 + ele * 4;
+//     refArr.push(ele);
+//   }
+//   }
+dogAgeDataSet1.forEach(ele => {
+   //TODO: convert this to a ternary operator
+  if (ele <= 2) {
+    ele = 2 * ele;
+    refArr.push(ele);
+  } else {
+    ele = 16 + ele * 4;
+    refArr.push(ele);
+  }
+  });
+  console.log(`refArr is:`, refArr);
+  const filteredArr = refArr.filter(refEle => refEle >= 18);
+  // console.log(`filteredArr is: ${filteredArr}`)
+  console.log(`filteredArr is::`, filteredArr); // filteredArr is:: [36, 32, 76, 48, 28]
+  const averageAgesDataSet1 = filteredArr.reduce((accu, curr) => (accu + curr), 0) / filteredArr.length;
+  console.log(`averageAgesDataSet1 is::`, averageAgesDataSet1); // 44
 
-const lessThanTwo = dogAgeArr.filter(dogAge => dogAge <= 2).map(dogAge => 2 * dogAge);
-const greaterThanTwo = dogAgeArr.filter(dogAge => dogAge > 2).map(dogAge => 16 + dogAge * 4);
-
-console.log(`lessThanTwo arr: ${lessThanTwo}`);
-console.log(`greaterThanTwo arr: ${greaterThanTwo}`);
-
-let numOfElements = Number.MIN_VALUE;
-const sumOfHumAges = greaterThanTwo.filter(ele => ele > 18).reduce( 
-  (accumulator, curr, index, arr) =>  {
-    return accumulator + curr
-  }, 0);
-  // return sumOfHumAges / numOfElements;
-
-  // let maxValueUsingReduce = Number.MIN_VALUE;
-  // const reduceMaxValue = movementsArr.reduce((accu, curr) => {
-  //   if (curr > maxValueUsingReduce) maxValueUsingReduce = curr;
-  // }, 0)
-
-console.log(`sumOfHumAges arr: ${sumOfHumAges}`);
+//TODO:: why is this below func., giving error when we try to return the humanAges instead of printing it ??
+const refArr_1b = function(ages) {
+  const humanAges = ages.map(ele => (ele <= 2 ? 2 * ele : 16 + ele * 4));
+  console.log(`refArr optionB is:`, humanAges);
+  const adultsAges = humanAges.filter(refEle => refEle >= 18);
+  console.log(`adultsAges optionB is:`, adultsAges);
+  // const averageAgesDataSet1b = adultsAges.reduce((accu, curr) => 
+  // (accu + curr), 0) / adultsAges.length;
+  const averageAgesDataSet1b = adultsAges.reduce((accu, curr, i, arr) => 
+  (accu + curr / arr.length), 0);
+  console.log(`averageAgesDataSet1b optionB is:`, averageAgesDataSet1b);
+  return averageAgesDataSet1b;
+}
+refArr_1b(dogAgeDataSet1); // 44
+refArr_1b(dogAgeDataSet2); // 47.33
 
 
 
